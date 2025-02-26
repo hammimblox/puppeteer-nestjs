@@ -18,6 +18,7 @@ export class AppService {
     });
 
     await browser.close();
+    return pdfBuffer
     const pdfBase64 = Buffer.from(pdfBuffer).toString('base64');
     return pdfBase64
   }
