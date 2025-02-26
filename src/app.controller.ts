@@ -9,8 +9,21 @@ export class AppController {
 
   @Post()
   async generatePdf(@Body() dto: CreatePdfDto) {
-    const pdfBuffer = await this.appService.generatePDF(dto );
+    const pdfBuffer = await this.appService.generatePDF(dto);
     return pdfBuffer
 
+  }
+
+  @Post("pdf")
+  async getPdf(@Res() res: Response, @Body() dto: CreatePdfDto) {
+    const pdfBuffer = await this.appService.generatePDF(dto);
+
+    res.set({
+      'Content-Type': 'application/pdf',
+      'Content-Disposition': 'attachment; filename="generated.pdf"',
+      'Content-Length': pdfBuffer.length,
+    });
+
+    res.end(pdfBuffer);
   }
 }
