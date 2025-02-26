@@ -11,7 +11,7 @@ export class AppService {
 
     const pdfBuffer = await page.pdf({
       format: 'A4',
-      margin: { top: "220px", bottom: "70px", left: "50px", right: "50px" },
+      margin: { top: "230px", bottom: "70px", left: "50px", right: "50px" },
       displayHeaderFooter: true,
       headerTemplate: dto.headerTemplate,
       footerTemplate: dto.footerTemplate
