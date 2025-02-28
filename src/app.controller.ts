@@ -18,12 +18,18 @@ export class AppController {
   async getPdf(@Res() res: Response, @Body() dto: CreatePdfDto) {
     const pdfBuffer = await this.appService.getPdf(dto);
 
-    res.set({
-      'Content-Type': 'application/pdf',
-      'Content-Disposition': 'attachment; filename="generated.pdf"',
-      'Content-Length': pdfBuffer.length,
-    });
+    try {
+      res.set({
+        'Content-Type': 'application/pdf',
+        'Content-Disposition': 'attachment; filename="generated.pdf"',
+        'Content-Length': pdfBuffer.length,
+      });
 
-    res.end(pdfBuffer);
+      res.end(pdfBuffer);
+
+    } catch (error) {
+      console.log("error in nestjs", error);
+
+    }
   }
 }

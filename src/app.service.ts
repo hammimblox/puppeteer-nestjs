@@ -33,9 +33,15 @@ export class AppService {
       headerTemplate: dto.headerTemplate,
       footerTemplate: dto.footerTemplate
     });
+    try {
 
-    await browser.close();
-    return pdfBuffer
+      await browser.close();
+      return pdfBuffer
+
+    } catch (error) {
+      console.log("pdfBuffer error", error);
+
+    }
     const pdfBase64 = Buffer.from(pdfBuffer).toString('base64');
     return pdfBase64
   }
