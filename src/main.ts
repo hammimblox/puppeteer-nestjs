@@ -5,8 +5,8 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   // Increase request size limit to 50MB (adjust as needed)
-  app.use(bodyParser.json({ limit: '500mb', }));
-  app.use(bodyParser.urlencoded({ limit: '500mb', extended: true }));
+  app.use(bodyParser.json({ limit: '50mb', }));
+  app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
 
   console.log("Application started on http://localhost:" + process.env.APPLICATION_PORT);
