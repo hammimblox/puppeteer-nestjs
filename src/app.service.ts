@@ -24,6 +24,23 @@ export class AppService {
   async getPdf(dto: CreatePdfDto): Promise<any> {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
+    await page.addStyleTag({
+      content: `
+        @font-face {
+          font-family: 'Noto Naskh Arabic';
+          src: url('https://github.com/Ailuro-Poda/ExpoArabicLightFont/raw/refs/heads/main/ExpoArabicLight.ttf');
+        }
+        body {
+          font-family: 'Noto Naskh Arabic', serif;
+        }
+        .footerC {
+          font-family: 'Noto Naskh Arabic', serif;
+        }
+        .headerC {
+          font-family: 'Noto Naskh Arabic', serif;
+        }
+      `,
+  });
     await page.setContent(dto.content);
 
     const pdfBuffer = await page.pdf({
