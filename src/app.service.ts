@@ -30,6 +30,16 @@ export class AppService {
           font-family: 'Noto Naskh Arabic';
           src: url('https://github.com/Ailuro-Poda/ExpoArabicLightFont/raw/refs/heads/main/ExpoArabicLight.ttf');
         }
+
+        @font-face {
+          font-family: 'Aptos Display';
+          src: url('http://localhost:3002/fonts/aptos-display.ttf');
+        }
+        @font-face {
+          font-family: 'Aptos';
+          src: url('http://localhost:3002/fonts/aptos-display.ttf');
+        }
+
         body {
           font-family: 'Noto Naskh Arabic', serif;
         }
