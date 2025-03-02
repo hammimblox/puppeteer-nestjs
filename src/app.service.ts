@@ -92,7 +92,7 @@ export class AppService {
     return pdfBase64
   }
 
-  async getPdfBuffer(dto: CreatePdfDto): Promise<any> {
+  async getPdfBuffer(dto: CreatePdfDto) {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     await page.addStyleTag({

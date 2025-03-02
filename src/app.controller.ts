@@ -38,11 +38,10 @@ export class AppController {
 
     try {
 
-      return pdfBuffer
-
+      return { data: Array.from(pdfBuffer) }
     } catch (error) {
       console.log("error in nestjs", error);
-
+      return {error}
     }
   }
 }
