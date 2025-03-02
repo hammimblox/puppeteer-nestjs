@@ -32,4 +32,17 @@ export class AppController {
 
     }
   }
+  @Post("pdf/buffer")
+  async getPdfBuffer(@Res() res: Response, @Body() dto: CreatePdfDto) {
+    const pdfBuffer = await this.appService.getPdfBuffer(dto);
+
+    try {
+
+      return pdfBuffer
+
+    } catch (error) {
+      console.log("error in nestjs", error);
+
+    }
+  }
 }
