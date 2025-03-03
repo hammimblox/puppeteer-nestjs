@@ -4,9 +4,10 @@ import { CreatePdfDto } from './dto/CreatePdfDto';
 
 import { exec } from "child_process";
 import fs from "fs";
-import util from "util";
+import { promisify } from "util";
 
-const execPromise = util.promisify(exec);
+const execPromise = promisify(exec);
+
 
 @Injectable()
 export class AppService {
