@@ -16,6 +16,5 @@ export class BlockchainController {
     const apiRes = await fetch("http://notary-report.d2vqlvggwx1cng.amplifyapp.com/api/blockchain", {
       method: "GET"
     })
-    this.logger.debug(apiRes.ok);
   }
 }
