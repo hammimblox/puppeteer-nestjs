@@ -33,15 +33,33 @@ export class AppController {
     }
   }
   @Post("pdf/buffer")
-  async getPdfBuffer(@Res() res: Response, @Body() dto: CreatePdfDto) {
-    const pdfBuffer = await this.appService.getPdfBuffer(dto);
+  async getPdfUint8Array(@Res() res: Response, @Body() dto: CreatePdfDto) {
+    const pdfUint8Array = await this.appService.getPdfBuffer(dto);
 
     try {
 
-      return { data: Array.from(pdfBuffer) }
+      return { data: Array.from(pdfUint8Array) }
     } catch (error) {
       console.log("error in nestjs", error);
-      return {error}
+      return { error }
+    }
+  }
+  @Post("pdf/compressed")
+  async getCompressedPdf(@Res() res: Response, @Body() dto: CreatePdfDto) {
+    const pdfBuffer = await this.appService.getCompressedPdf(dto);
+
+    try {
+      res.set({
+        'Content-Type': 'application/pdf',
+        'Content-Disposition': 'attachment; filename="generated.pdf"',
+        'Content-Length': pdfBuffer.length,
+      });
+
+      res.end(pdfBuffer);
+
+    } catch (error) {
+      console.log("error in nestjs", error);
+
     }
   }
 }
