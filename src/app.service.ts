@@ -160,7 +160,9 @@ export class AppService {
     try {
 
       await browser.close();
-      return new Uint8Array(pdfBuffer);
+      const base64Data = Buffer.from(pdfBuffer).toString("base64");
+      return base64Data;
+
     } catch (error) {
       console.log("pdfBuffer error", error);
 

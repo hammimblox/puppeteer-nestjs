@@ -38,7 +38,7 @@ export class AppController {
 
     try {
 
-      return { data: Array.from(pdfUint8Array) }
+      return { data: pdfUint8Array }
     } catch (error) {
       console.log("error in nestjs", error);
       return { error }
