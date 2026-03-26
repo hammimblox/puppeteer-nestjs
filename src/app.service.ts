@@ -60,31 +60,14 @@ export class AppService {
     });
     await page.setContent(dto.content);
 
-    //   await page.evaluate(() => {
-    //     const table = document.getElementsByTagName("table");
-    //     const rows = table[0].getElementsByTagName("tr");
 
-    //     for (let row of rows) {
-    //         const cells = row.getElementsByTagName("td");
-    //         if (cells.length === 2) {
-    //             let tempContent = cells[0].innerHTML;
-    //             cells[0].innerHTML = cells[1].innerHTML;
-    //             cells[1].innerHTML = tempContent;
-
-    //             // Apply styling dynamically
-    //             cells[0].style.textAlign = "left";
-    //             cells[1].style.textAlign = "right";
-    //             cells[0].style.fontSize = "18px";
-    //             cells[1].style.fontSize = "18px";
-    //         }
-    //     }
-    // });
     const pdfBuffer = await page.pdf({
       format: 'A4',
       margin: { top: "200px", bottom: "70px", left: "50px", right: "50px" },
       displayHeaderFooter: true,
       headerTemplate: dto.headerTemplate,
-      footerTemplate: dto.footerTemplate
+      footerTemplate: dto.footerTemplate,
+      printBackground: true,
     });
     try {
 
@@ -131,31 +114,13 @@ export class AppService {
     });
     await page.setContent(dto.content);
 
-    //   await page.evaluate(() => {
-    //     const table = document.getElementsByTagName("table");
-    //     const rows = table[0].getElementsByTagName("tr");
-
-    //     for (let row of rows) {
-    //         const cells = row.getElementsByTagName("td");
-    //         if (cells.length === 2) {
-    //             let tempContent = cells[0].innerHTML;
-    //             cells[0].innerHTML = cells[1].innerHTML;
-    //             cells[1].innerHTML = tempContent;
-
-    //             // Apply styling dynamically
-    //             cells[0].style.textAlign = "left";
-    //             cells[1].style.textAlign = "right";
-    //             cells[0].style.fontSize = "18px";
-    //             cells[1].style.fontSize = "18px";
-    //         }
-    //     }
-    // });
     const pdfBuffer = await page.pdf({
       format: 'A4',
       margin: { top: "200px", bottom: "70px", left: "50px", right: "50px" },
       displayHeaderFooter: true,
       headerTemplate: dto.headerTemplate,
-      footerTemplate: dto.footerTemplate
+      footerTemplate: dto.footerTemplate,
+      printBackground: true,
     });
     try {
 
@@ -206,6 +171,7 @@ export class AppService {
       displayHeaderFooter: true,
       headerTemplate: dto.headerTemplate,
       footerTemplate: dto.footerTemplate,
+      printBackground: true,
     });
 
     await browser.close();
