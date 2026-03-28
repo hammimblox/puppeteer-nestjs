@@ -11,8 +11,26 @@ const execPromise = promisify(exec);
 
 @Injectable()
 export class AppService {
+
+  private browser: puppeteer.Browser | null = null;
+
+  // ✅ COMMON BROWSER INSTANCE
+  private async getBrowser(): Promise<puppeteer.Browser> {
+    if (!this.browser) {
+      this.browser = await puppeteer.launch({
+        executablePath: '/usr/bin/chromium-browser', // EC2 path
+        args: [
+          '--no-sandbox',
+          '--disable-setuid-sandbox',
+          '--disable-dev-shm-usage',
+        ],
+      });
+    }
+    return this.browser;
+  }
+
   async generatePDF(dto: CreatePdfDto): Promise<any> {
-    const browser = await puppeteer.launch();
+    const browser = await this.getBrowser();
     const page = await browser.newPage();
     await page.setContent(dto.content);
 
@@ -29,7 +47,7 @@ export class AppService {
     return pdfBase64
   }
   async getPdf(dto: CreatePdfDto): Promise<any> {
-    const browser = await puppeteer.launch();
+    const browser = await this.getBrowser();
     const page = await browser.newPage();
     await page.addStyleTag({
       content: `
@@ -83,7 +101,7 @@ export class AppService {
   }
 
   async getPdfBuffer(dto: CreatePdfDto) {
-    const browser = await puppeteer.launch();
+    const browser = await this.getBrowser();
     const page = await browser.newPage();
     await page.addStyleTag({
       content: `
@@ -137,7 +155,7 @@ export class AppService {
 
 
   async getCompressedPdf(dto: CreatePdfDto): Promise<any> {
-    const browser = await puppeteer.launch();
+    const browser = await this.getBrowser();
     const page = await browser.newPage();
 
     await page.addStyleTag({
